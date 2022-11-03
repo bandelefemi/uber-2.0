@@ -1,13 +1,23 @@
 import { StyleSheet, Text, View, Platform, 
-    StatusBar,SafeAreaView } from 'react-native'
+    StatusBar,SafeAreaView, Image } from 'react-native'
 import React from 'react'
 import GlobalStyles from '../GlobalStyles'
+import tw from 'tailwind-react-native-classnames'
+import NavOptions from '../components/NavOptions'
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={GlobalStyles.droidSafeArea} >
-      <View>
-        <Text style={styles.text}>I am the light!!!</Text>
+    <SafeAreaView style={[tw`bg-white`, GlobalStyles.droidSafeArea]} >
+      <View style={tw` p-5`}>
+        <Image
+            style={{
+                width: 100, height: 100, resizeMode: 'contain'
+            }} 
+            source={{
+                uri: 'https://links.papareact.com/gzs'
+            }} />
+
+        <NavOptions />
       </View>
     </SafeAreaView>
   )
