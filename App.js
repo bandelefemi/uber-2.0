@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import { store } from './store';
 import GlobalStyles from './GlobalStyles';
+// import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export default function App() {
