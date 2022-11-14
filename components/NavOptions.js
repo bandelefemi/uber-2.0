@@ -3,6 +3,7 @@ import { FlatList, Image, StyleSheet, Text,
 import React from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { Icon } from '@rneui/base'
+import { useNavigation } from '@react-navigation/native'
 
 export default function NavOptions() {
 
@@ -17,16 +18,19 @@ export default function NavOptions() {
             id: '456',
             title: 'Get food',
             image: 'https://links.papareact.com/28w',
-            screen: 'FriendScreen'
+            screen: 'FoodScreen'
         }
     ]
+
+    const navigation = useNavigation()
   return (
     <FlatList 
      data={data}
      horizontal
      keyExtractor={(item) => item.id}
      renderItem={({item}) => (
-        <TouchableOpacity style={tw`p-2 pt-6 pb-8 bg-gray-100 m-2 w-36`} >
+        <TouchableOpacity style={tw`p-2 pt-6 pb-8 bg-gray-100 m-2 w-36`}
+                        onPress={()=> navigation.navigate(item.screen)} >
             <View>
                 <Image
                     style={{width: 120, height: 120, resizeMode: 'contain'}}

@@ -5,13 +5,38 @@ import HomeScreen from './screens/HomeScreen';
 import { store } from './store';
 import GlobalStyles from './GlobalStyles';
 // import { SafeAreaProvider } from 'react-native-safe-area-context';
+import 'react-native-screens'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MapScreen from './screens/MapScreen';
+import FoodScreen from './screens/FoodScreen';
 
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator()
   return (
     <Provider store={store} >
 
-        <HomeScreen />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name='HomeScreen' component={HomeScreen}
+            options={{
+              headerShown: false
+            }} />
+          <Stack.Screen 
+            name='MapScreen' component={MapScreen}
+            options={{
+              headerShown: false
+            }} />
+          <Stack.Screen 
+            name='FoodScreen' component={FoodScreen}
+            options={{
+              headerShown: false
+            }} />
+        </Stack.Navigator>
+      </NavigationContainer>
       
     </Provider>
     
