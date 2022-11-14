@@ -4,8 +4,14 @@ import React from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { Icon } from '@rneui/base'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
+import { selectOrigin } from '../slices/navSlice'
 
 export default function NavOptions() {
+
+    const origin = useSelector(selectOrigin)
+
+    
 
     const data = [
         {
@@ -24,14 +30,17 @@ export default function NavOptions() {
 
     const navigation = useNavigation()
   return (
+
     <FlatList 
      data={data}
      horizontal
      keyExtractor={(item) => item.id}
      renderItem={({item}) => (
+        
         <TouchableOpacity style={tw`p-2 pt-6 pb-8 bg-gray-100 m-2 w-36`}
-                        onPress={()=> navigation.navigate(item.screen)} >
-            <View>
+                        onPress={()=> navigation.navigate(item.screen)}
+                        disabled={!origin} >
+            <View style={tw`${!origin && 'opacity-30'}`}>
                 <Image
                     style={{width: 120, height: 120, resizeMode: 'contain'}}
                     source={{ uri: item.image}} />
@@ -43,6 +52,7 @@ export default function NavOptions() {
                     />    
             </View>
         </TouchableOpacity>
+        
      )} />
   )
 }
