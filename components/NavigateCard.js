@@ -40,7 +40,7 @@ export default function NavigateCard() {
             language: 'en'
           }} />
       </View>
-      <NavFavourites />
+      {/* <NavFavourites /> */}
     </View>
     
   )
