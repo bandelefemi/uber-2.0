@@ -22,7 +22,8 @@ export default function App() {
 
       <NavigationContainer>
         <KeyboardAvoidingView style={{flex:1}}
-              behavior={Platform.OS === "android"? "height": "padding"} >
+              behavior={Platform.OS === "android"? "height": "padding"}
+              keyboardVerticalOffset={Platform.OS === "android"? -80:0} >
           <Stack.Navigator>
             <Stack.Screen 
               name='HomeScreen' component={HomeScreen}

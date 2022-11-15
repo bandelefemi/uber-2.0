@@ -1,23 +1,28 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, 
+  TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import tw from 'tailwind-react-native-classnames'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { GooglePlacesAutocomplete } 
+from 'react-native-google-places-autocomplete'
 import { GOOGLE_MAPS_APIKEY } from '@env' 
 import GlobalStyles from '../GlobalStyles'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setDestination } from '../slices/navSlice'
 import { useNavigation } from '@react-navigation/native'
 import NavFavourites from './NavFavourites'
+import { Icon } from '@rneui/base/dist/Icon'
+import { selectDestination } from '../slices/navSlice'
 
 
 export default function NavigateCard() {
 
   const dispatch = useDispatch()
   const navigation = useNavigation()
+  const destination = useSelector(selectDestination)
   return (
     
     <View style={[tw`bg-white flex-1`]}>
-      <Text style={tw`text-center py-5 text-lg`}>Hi, Femi</Text>
+      <Text style={tw`text-center py-2 text-lg`}>Hi, Femi</Text>
       <View style={tw`border-t border-gray-100 flex-shrink`}>
         <GooglePlacesAutocomplete 
           placeholder='where to'
@@ -40,7 +45,27 @@ export default function NavigateCard() {
             language: 'en'
           }} />
       </View>
-      {/* <NavFavourites /> */}
+      <NavFavourites />
+
+      <View style={tw`flex flex-row justify-evenly 
+      border-t py-2 border-gray-100`}>
+        <TouchableOpacity 
+          style={tw`bg-black flex flex-row px-4 py-3 rounded-full w-24`}
+          disabled={!destination}
+          onPress={()=> {navigation.navigate('RideOptionsCard')}} >
+          <Icon name='car' type='font-awesome' color={'white'} size={16} />
+          <Text style={tw`text-white text-center ml-4`}>Rides</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={tw`flex flex-row justify-between w-24 
+          px-4 py-3 bg-gray-100 rounded-full`}  >
+          <Icon name='fast-food-outline' 
+                type='ionicon' 
+                color={'black'} 
+                size={16} />
+          <Text style={tw`text-center`}>Eats</Text>
+        </TouchableOpacity>
+      </View>
     </View>
     
   )

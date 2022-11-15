@@ -17,7 +17,7 @@ export default function MapScreen() {
         <View style={tw`h-1/2 bg-gray-300`}>
           <Maps />
         </View>
-        <View style={tw`h-1/2 bg-red-400`}>
+        <View style={tw`h-1/2 bg-white`}>
           <Stack.Navigator>
             <Stack.Screen 
               name='NavigateCard'
